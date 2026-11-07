@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from ketnoi import ket_noi
 from werkzeug.security import check_password_hash
-
+from werkzeug.security import generate_password_hash
 app = Flask(__name__)
 app.secret_key = "qlld_secret_key_2026"
 
