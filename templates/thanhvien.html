@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Công việc của tôi</title>
 
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="member-container">
+
+    <!-- THANH BÊN TRÁI -->
+    <div class="member-sidebar">
+
+        <div class="member-profile">
+
+            <div class="member-avatar">
+                {{ sv.ho_ten[0] if sv else 'S' }}
+            </div>
+
+            <h3>{{ sv.ho_ten if sv else session['ho_ten'] }}</h3>
+
+            <p>Thành viên</p>
+
+        </div>
+
+        <div class="member-menu">
+
+            <a href="#cong-viec">Công việc của tôi</a>
+
+            <a href="#tai-khoan">Tài khoản</a>
+
+        </div>
+
+        <a class="member-logout"
+           href="{{ url_for('dang_xuat') }}">
+            Đăng xuất
+        </a>
+
+    </div>
+
+
+    <!-- NỘI DUNG CHÍNH -->
+    <div class="member-content">
+
+        <h2>CÔNG VIỆC CỦA TÔI</h2>
+
+        <p class="member-welcome">
+            Xin chào {{ sv.ho_ten if sv else session['ho_ten'] }}!
+            Đây là danh sách công việc được phân công cho bạn.
+        </p>
+
+
+        <!-- DANH SÁCH CÔNG VIỆC -->
+        <section id="cong-viec">
+
+            <h3>Danh sách công việc</h3>
+
+            {% for cv in danh_sach_cv %}
+
+            <div class="member-task">
+
+                <h4>{{ cv.ten_cv }}</h4>
+
+                <p>
+                    <strong>Mã công việc:</strong>
+                    {{ cv.ma_cv }}
+                </p>
+
+                <p>
+                    <strong>Mô tả:</strong>
+                    {{ cv.mo_ta or 'Không có mô tả' }}
+                </p>
+
+                <p>
+                    <strong>Ngày làm:</strong>
+                    {{ cv.ngay_lam }}
+                </p>
+
+                <p>
+                    <strong>Trạng thái:</strong>
+
+                    {% if cv.trang_thai == 'Hoàn thành' %}
+
+                        <span class="task-done">
+                            {{ cv.trang_thai }}
+                        </span>
+
+                    {% else %}
+
+                        <span class="task-pending">
+                            {{ cv.trang_thai }}
+                        </span>
+
+                    {% endif %}
+                </p>
+
+            </div>
+
+            {% else %}
+
+            <div class="member-empty">
+                Hiện tại bạn chưa được phân công công việc nào.
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+
+        <!-- THÔNG TIN TÀI KHOẢN -->
+        <section id="tai-khoan">
+
+            <h3>Thông tin tài khoản</h3>
+
+            <div class="member-account">
+
+                <p>
+                    <strong>Mã sinh viên:</strong>
+                    {{ sv.ma_sv if sv else '' }}
+                </p>
+
+                <p>
+                    <strong>Họ và tên:</strong>
+                    {{ sv.ho_ten if sv else session['ho_ten'] }}
+                </p>
+
+                <p>
+                    <strong>Lớp:</strong>
+                    {{ sv.lop if sv else '' }}
+                </p>
+
+                <p>
+                    <strong>Tên đăng nhập:</strong>
+                    {{ session['username'] }}
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+</body>
+</html>
