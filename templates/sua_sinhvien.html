@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa sinh viên</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h2>SỬA SINH VIÊN</h2>
+
+    <form method="POST">
+
+        <label>Mã sinh viên</label>
+        <input type="text"
+               value="{{ sv.ma_sv }}"
+               disabled>
+
+        <label>Họ và tên</label>
+        <input type="text"
+               name="ho_ten"
+               value="{{ sv.ho_ten }}"
+               required>
+
+        <label>Lớp</label>
+        <input type="text"
+               name="lop"
+               value="{{ sv.lop }}"
+               required>
+
+        <button type="submit">Lưu thay đổi</button>
+
+    </form>
+
+    <a href="{{ url_for('admin') }}">Quay lại</a>
+
+</div>
+
+</body>
+</html>
