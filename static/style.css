@@ -1,0 +1,1190 @@
+
+/* =====================================
+   1. CÀI ĐẶT CHUNG
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f7fb;
+    color: #263445;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+/* =====================================
+   2. TRANG ĐĂNG NHẬP
+===================================== */
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background:
+        radial-gradient(circle at top left, #315c9b, transparent 45%),
+        linear-gradient(135deg, #102544, #1e477b);
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.login-logo {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #eaf1ff;
+    color: #2563eb;
+    font-size: 30px;
+}
+
+.login-box h2 {
+    text-align: center;
+    font-size: 25px;
+    color: #17345c;
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #8995a5;
+    margin-bottom: 30px;
+}
+
+.login-box label {
+    display: block;
+    margin: 17px 0 8px;
+    color: #34445a;
+    font-weight: 600;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #dce3ed;
+    border-radius: 8px;
+    outline: none;
+    background: #fafbfd;
+    font-size: 14px;
+}
+
+.login-box input:focus {
+    border-color: #3478ed;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(52, 120, 237, 0.1);
+}
+
+.login-box button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.login-box button:hover {
+    background: #174fc4;
+    transform: translateY(-1px);
+}
+
+
+/* =====================================
+   3. BỐ CỤC ADMIN
+===================================== */
+
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f4f7fb;
+}
+
+
+/* =====================================
+   4. THANH MENU BÊN TRÁI
+===================================== */
+
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    min-height: 100vh;
+    padding: 25px 17px;
+    background: #142b49;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile {
+    text-align: center;
+    padding: 15px 0 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.avatar {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #3478ed;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.profile h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.profile p {
+    color: #a9b9cc;
+    font-size: 12px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 30px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    border-radius: 8px;
+    color: #c6d2e1;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    background: rgba(255,255,255,0.09);
+    color: white;
+}
+
+.menu a.active {
+    background: #3478ed;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(52,120,237,0.25);
+}
+
+.logout {
+    display: block;
+    margin-top: auto;
+    padding: 13px 14px;
+    border-radius: 8px;
+    color: #ffb8b8;
+    transition: 0.2s;
+}
+
+.logout:hover {
+    background: rgba(255,255,255,0.09);
+    color: white;
+}
+
+
+/* =====================================
+   5. NỘI DUNG CHÍNH
+===================================== */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 35px;
+}
+
+.main-content > h2 {
+    color: #18375e;
+    font-size: 25px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.main-content section {
+    background: white;
+    padding: 28px;
+    margin-bottom: 25px;
+    border: 1px solid #e5eaf1;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(30, 55, 90, 0.04);
+}
+
+.main-content h3 {
+    color: #1c3d67;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.main-content h4 {
+    color: #344b69;
+    font-size: 15px;
+    margin: 25px 0 15px;
+}
+
+
+/* =====================================
+   6. BIỂU MẪU
+===================================== */
+
+.main-content form:not([style*="display:inline"]) {
+    margin-bottom: 20px;
+}
+
+.main-content form label {
+    display: block;
+    margin: 15px 0 7px;
+    color: #34445a;
+    font-weight: 600;
+}
+
+.main-content input[type="text"],
+.main-content input[type="date"],
+.main-content input[type="password"],
+.main-content textarea,
+.main-content select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dce3ed;
+    border-radius: 7px;
+    outline: none;
+    background: #fbfcfe;
+    color: #263445;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.main-content textarea {
+    min-height: 95px;
+    resize: vertical;
+}
+
+.main-content input:focus,
+.main-content textarea:focus,
+.main-content select:focus {
+    border-color: #3478ed;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(52,120,237,0.09);
+}
+
+
+/* =====================================
+   7. NÚT BẤM
+===================================== */
+
+.main-content button {
+    padding: 10px 17px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 7px;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.main-content button:hover {
+    background: #174fc4;
+    transform: translateY(-1px);
+}
+
+.main-content td a {
+    display: inline-block;
+    padding: 7px 12px;
+    margin-right: 5px;
+    border-radius: 5px;
+    background: #eaf1ff;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.main-content td a:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.main-content td form[style*="display:inline"] button {
+    margin-top: 0;
+    padding: 7px 12px;
+    background: #feecec;
+    color: #dc2626;
+}
+
+.main-content td form[style*="display:inline"] button:hover {
+    background: #dc2626;
+    color: white;
+}
+
+
+/* =====================================
+   8. DANH SÁCH SINH VIÊN
+===================================== */
+
+.student-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+    padding: 15px;
+    background: #f7f9fc;
+    border: 1px solid #e5eaf1;
+    border-radius: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.student-item {
+    display: flex !important;
+    align-items: center;
+    gap: 9px;
+    margin: 0 !important;
+    padding: 10px;
+    border-radius: 6px;
+    background: white;
+    border: 1px solid #e5eaf1;
+    cursor: pointer;
+    font-weight: normal !important;
+}
+
+.student-item:hover {
+    border-color: #3478ed;
+    background: #f0f5ff;
+}
+
+.student-item input {
+    width: auto;
+    accent-color: #2563eb;
+}
+
+
+/* =====================================
+   9. BẢNG DỮ LIỆU
+===================================== */
+
+.main-content table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    background: white;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.main-content th {
+    padding: 14px 12px;
+    background: #edf3fb;
+    color: #28466c;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 1px solid #dce5f0;
+    white-space: nowrap;
+}
+
+.main-content td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #edf0f5;
+    color: #46566b;
+    vertical-align: middle;
+}
+
+.main-content tr:hover td {
+    background: #f8faff;
+}
+
+.main-content tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =====================================
+   10. THÔNG BÁO
+===================================== */
+
+.thong-bao {
+    padding: 13px 16px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    background: #eaf3ff;
+    border-left: 4px solid #3478ed;
+    color: #2457a5;
+}
+
+
+/* =====================================
+   11. TRANG SỬA SINH VIÊN
+===================================== */
+
+.edit-container {
+    max-width: 650px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+}
+
+.edit-container h2 {
+    color: #18375e;
+    margin-bottom: 25px;
+}
+
+.edit-container label {
+    display: block;
+    margin: 15px 0 7px;
+    font-weight: 600;
+}
+
+.edit-container input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dce3ed;
+    border-radius: 7px;
+}
+
+.edit-container button {
+    margin-top: 22px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 7px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* =====================================
+   12. TRANG SINH VIÊN
+===================================== */
+
+.member-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f4f7fb;
+}
+
+.member-sidebar {
+    width: 250px;
+    min-width: 250px;
+    background: #142b49;
+    color: white;
+    padding: 25px 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.member-profile {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.member-avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #3478ed;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin: 0 auto 12px;
+}
+
+.member-profile p {
+    color: #a9b9cc;
+    margin-top: 6px;
+}
+
+.member-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.member-menu a {
+    padding: 12px;
+    color: #c6d2e1;
+    border-radius: 7px;
+}
+
+.member-menu a:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.member-logout {
+    margin-top: auto;
+    padding: 12px;
+    color: #ffb8b8;
+}
+
+.member-content {
+    flex: 1;
+    min-width: 0;
+    padding: 35px;
+}
+
+.member-content h2 {
+    color: #18375e;
+    margin-bottom: 15px;
+}
+
+.member-welcome {
+    color: #8793a3;
+    margin-bottom: 25px;
+}
+
+.member-task,
+.member-account,
+.member-empty {
+    background: white;
+    padding: 22px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    border: 1px solid #e5eaf1;
+    box-shadow: 0 3px 10px rgba(30,55,90,0.03);
+}
+
+.member-task h4 {
+    color: #2563eb;
+    margin-bottom: 12px;
+}
+
+.member-account {
+    line-height: 2.2;
+}
+
+.task-done {
+    color: #15803d;
+    font-weight: bold;
+}
+
+.task-pending {
+    color: #d97706;
+    font-weight: bold;
+}
+
+.member-empty {
+    color: #8793a3;
+    text-align: center;
+}
+
+
+/* =====================================
+   13. RESPONSIVE - ĐIỆN THOẠI
+===================================== */
+
+@media (max-width: 900px) {
+    .sidebar,
+    .member-sidebar {
+        width: 210px;
+        min-width: 210px;
+    }
+
+    .main-content,
+    .member-content {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 650px) {
+    .admin-container,
+    .member-container {
+        flex-direction: column;
+    }
+
+    .sidebar,
+    .member-sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+    }
+
+    .menu {
+        margin-top: 15px;
+    }
+
+    .logout,
+    .member-logout {
+        margin-top: 15px;
+    }
+
+    .main-content,
+    .member-content {
+        padding: 15px;
+    }
+
+    .main-content section {
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .student-list {
+        grid-template-columns: 1fr;
+    }
+
+    .login-box {
+        padding: 25px;
+    }
+}
+
+/* ===== GIAO DIỆN ĐĂNG NHẬP ===== */
+
+.login-page {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #e8f0ff, #dce7f7);
+    font-family: Arial, sans-serif;
+}
+
+.login-page .login-box {
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+    padding: 40px 35px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+.login-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e8efff;
+    color: #2457c5;
+    font-size: 32px;
+}
+
+.login-page .login-box h2 {
+    margin: 0 0 10px;
+    color: #1e3a65;
+    font-size: 23px;
+}
+
+.login-subtitle {
+    margin-bottom: 30px;
+    color: #778399;
+    font-size: 14px;
+}
+
+.login-page .login-box form {
+    text-align: left;
+}
+
+.login-page .login-box label {
+    display: block;
+    margin: 18px 0 8px;
+    color: #34445c;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.login-page .login-box label i {
+    margin-right: 7px;
+    color: #3568cf;
+}
+
+.login-page .login-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    border: 1px solid #d8dfeb;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.login-page .login-box input:focus {
+    border-color: #3568cf;
+    box-shadow: 0 0 0 3px rgba(53, 104, 207, 0.12);
+}
+
+.login-page .login-box button {
+    width: 100%;
+    margin-top: 28px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #2457c5;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.login-page .login-box button:hover {
+    background: #19449f;
+}
+
+.login-page .login-box .error {
+    padding: 10px;
+    border-radius: 7px;
+    background: #fff0f0;
+    color: #d12d2d;
+    font-size: 13px;
+}
+
+.login-footer {
+    margin-top: 25px;
+    color: #9aa5b5;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* ==================================
+   GIAO DIỆN TRANG ADMIN
+================================== */
+
+.admin-page {
+    margin: 0;
+    background: #f3f6fb;
+    font-family: Arial, sans-serif;
+    color: #263449;
+}
+
+.admin-page * {
+    box-sizing: border-box;
+}
+
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* MENU BÊN TRÁI */
+
+.admin-page .sidebar {
+    width: 260px;
+    min-width: 260px;
+    background: #172b4d;
+    color: white;
+    padding: 25px 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 10px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.brand i {
+    font-size: 25px;
+    color: #70a5ff;
+}
+
+.admin-page .profile {
+    text-align: center;
+    padding: 20px 10px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.admin-page .avatar {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: #31558b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    color: white;
+}
+
+.admin-page .profile h3 {
+    margin: 5px 0;
+    font-size: 17px;
+}
+
+.admin-page .profile p {
+    margin: 5px 0;
+    color: #b7c7df;
+    font-size: 13px;
+}
+
+.admin-page .menu {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-page .menu a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px 12px;
+    border-radius: 8px;
+    color: #d3deef;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.admin-page .menu a i {
+    width: 20px;
+    text-align: center;
+}
+
+.admin-page .menu a:hover,
+.admin-page .menu a.active {
+    background: #31558b;
+    color: white;
+}
+
+.admin-page .logout {
+    margin-top: auto;
+    padding: 14px 12px;
+    border-radius: 8px;
+    color: #ffbaba;
+    text-decoration: none;
+}
+
+.admin-page .logout:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* NỘI DUNG CHÍNH */
+
+.admin-page .main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding-bottom: 22px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e0e6ef;
+}
+
+.top-header h2 {
+    margin: 0 0 8px;
+    color: #1e3558;
+    font-size: 23px;
+}
+
+.top-header p {
+    margin: 0;
+    color: #8793a5;
+    font-size: 13px;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #45628b;
+    font-size: 14px;
+}
+
+.admin-info i {
+    font-size: 25px;
+}
+
+/* TIÊU ĐỀ TỪNG MỤC */
+
+.page-heading {
+    margin-bottom: 22px;
+}
+
+.page-heading h3 {
+    margin: 0 0 8px;
+    font-size: 21px;
+    color: #203c64;
+}
+
+.page-heading h3 i {
+    margin-right: 8px;
+    color: #3568cf;
+}
+
+.page-heading p {
+    margin: 0;
+    color: #8995a7;
+    font-size: 13px;
+}
+
+/* KHUNG NỘI DUNG */
+
+.content-card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(30, 55, 90, 0.05);
+}
+
+.content-card h4 {
+    margin: 0 0 22px;
+    color: #29466f;
+    font-size: 16px;
+}
+
+.content-card h4 i {
+    margin-right: 8px;
+    color: #3568cf;
+}
+
+/* FORM */
+
+.data-form {
+    max-width: 750px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #40516a;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dce3ed;
+    border-radius: 7px;
+    background: #fff;
+    outline: none;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #3568cf;
+    box-shadow: 0 0 0 3px rgba(53,104,207,0.1);
+}
+
+/* NÚT */
+
+.btn-primary {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 7px;
+    background: #285fc5;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #19489f;
+}
+
+/* BẢNG */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-page table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.admin-page table th {
+    padding: 14px;
+    background: #edf3fc;
+    color: #29466f;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.admin-page table td {
+    padding: 14px;
+    border-bottom: 1px solid #edf0f5;
+    color: #536176;
+}
+
+.admin-page table tr:hover td {
+    background: #f8faff;
+}
+
+.empty-data {
+    text-align: center;
+    color: #929eae !important;
+    padding: 25px !important;
+}
+
+/* NÚT SỬA XÓA */
+
+.action-cell {
+    white-space: nowrap;
+}
+
+.action-cell form {
+    display: inline;
+}
+
+.btn-edit,
+.btn-delete {
+    display: inline-block;
+    padding: 8px 11px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background: #e8f0ff;
+    color: #285fc5;
+}
+
+.btn-delete {
+    background: #fff0f0;
+    color: #d33d3d;
+}
+
+/* DANH SÁCH SINH VIÊN PHÂN CÔNG */
+
+.admin-page .student-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 15px;
+    border: 1px solid #e0e6ef;
+    border-radius: 8px;
+    background: #f8faff;
+}
+
+.admin-page .student-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px;
+    border-radius: 6px;
+    background: white;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.admin-page .student-item input {
+    width: auto;
+}
+
+/* THÔNG BÁO */
+
+.admin-page .thong-bao {
+    padding: 13px 16px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    background: #eaf3ff;
+    color: #2856a0;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+    .admin-container {
+        flex-direction: column;
+    }
+
+    .admin-page .sidebar {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .admin-page .main-content {
+        padding: 18px;
+    }
+
+    .admin-page .student-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .top-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .content-card {
+        padding: 16px;
+    }
+}
