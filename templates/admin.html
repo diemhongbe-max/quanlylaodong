@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý lao động - Admin</title>
+
+    <!-- CSS chính -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="admin-page">
+
+<div class="admin-container">
+
+    <!-- THANH MENU BÊN TRÁI -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <i class="fa-solid fa-building-user"></i>
+            <span>QL LAO ĐỘNG</span>
+        </div>
+
+        <div class="profile">
+            <div class="avatar">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <h3>admin</h3>
+            <p>Quản trị viên</p>
+        </div>
+
+        <div class="menu">
+
+            <a href="{{ url_for('admin', tab='congviec') }}"
+               class="{% if tab == 'congviec' %}active{% endif %}">
+                <i class="fa-solid fa-clipboard-list"></i>
+                <span>Danh sách công việc</span>
+            </a>
+
+            <a href="{{ url_for('admin', tab='sinhvien') }}"
+               class="{% if tab == 'sinhvien' %}active{% endif %}">
+                <i class="fa-solid fa-users"></i>
+                <span>Sinh viên</span>
+            </a>
+
+            <a href="{{ url_for('admin', tab='phancong') }}"
+               class="{% if tab == 'phancong' %}active{% endif %}">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Phân công lao động</span>
+            </a>
+
+        </div>
+
+        <a class="logout" href="{{ url_for('dang_xuat') }}">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Đăng xuất
+        </a>
+
+    </aside>
+
+
+    <!-- NỘI DUNG CHÍNH -->
+    <main class="main-content">
+
+        <header class="top-header">
+            <div>
+                <h2>Hệ thống quản lý lao động</h2>
+                <p>Quản lý công việc và sinh viên trong lớp học</p>
+            </div>
+
+            <div class="admin-info">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Quản trị viên</span>
+            </div>
+        </header>
+
+
+        <!-- THÔNG BÁO -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="thong-bao">
+                        <i class="fa-solid fa-circle-info"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
+        <!-- ============================= -->
+        <!-- 1. DANH SÁCH CÔNG VIỆC -->
+        <!-- ============================= -->
+
+        {% if tab == 'congviec' %}
+
+        <section>
+
+            <div class="page-heading">
+                <div>
+                    <h3><i class="fa-solid fa-clipboard-list"></i> Danh sách công việc</h3>
+                    <p>Thêm và theo dõi các công việc của lớp</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+
+                <h4><i class="fa-solid fa-plus-circle"></i> Thêm công việc mới</h4>
+
+                <form method="POST" class="data-form">
+
+                    <input type="hidden" name="hanh_dong" value="them_cong_viec">
+
+                    <div class="form-group">
+                        <label>Tên công việc</label>
+                        <input type="text" name="ten_cv"
+                               placeholder="Nhập tên công việc" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mô tả công việc</label>
+                        <textarea name="mo_ta"
+                                  placeholder="Nhập mô tả công việc"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngày làm</label>
+                        <input type="date" name="ngay_lam" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fa-solid fa-plus"></i> Thêm công việc
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <h4><i class="fa-solid fa-list"></i> Danh sách công việc hiện có</h4>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã CV</th>
+                                <th>Tên công việc</th>
+                                <th>Mô tả</th>
+                                <th>Ngày làm</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for cv in danh_sach_cv %}
+                            <tr>
+                                <td>{{ cv.ma_cv }}</td>
+                                <td>{{ cv.ten_cv }}</td>
+                                <td>{{ cv.mo_ta or '' }}</td>
+                                <td>{{ cv.ngay_lam }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4" class="empty-data">
+                                    Chưa có công việc nào.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- 2. QUẢN LÝ SINH VIÊN -->
+        <!-- ============================= -->
+
+        {% elif tab == 'sinhvien' %}
+
+        <section>
+
+            <div class="page-heading">
+                <div>
+                    <h3><i class="fa-solid fa-users"></i> Quản lý sinh viên</h3>
+                    <p>Thêm, xem, chỉnh sửa và xóa thông tin sinh viên</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+
+                <h4><i class="fa-solid fa-user-plus"></i> Thêm sinh viên mới</h4>
+
+                <form method="POST" class="data-form">
+
+                    <input type="hidden" name="hanh_dong" value="them_sinh_vien">
+
+                    <div class="form-group">
+                        <label>Mã sinh viên</label>
+                        <input type="text" name="ma_sv"
+                               placeholder="Ví dụ: SV01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Họ và tên</label>
+                        <input type="text" name="ho_ten"
+                               placeholder="Nhập họ tên" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lớp</label>
+                        <input type="text" name="lop"
+                               placeholder="Nhập tên lớp" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fa-solid fa-user-plus"></i> Thêm sinh viên
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <h4><i class="fa-solid fa-address-book"></i> Danh sách sinh viên</h4>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã sinh viên</th>
+                                <th>Họ và tên</th>
+                                <th>Lớp</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for sv in danh_sach_sv %}
+                            <tr>
+                                <td>{{ sv.ma_sv }}</td>
+                                <td>{{ sv.ho_ten }}</td>
+                                <td>{{ sv.lop }}</td>
+
+                                <td class="action-cell">
+
+                                    <a class="btn-edit"
+                                       href="{{ url_for('sua_sinh_vien', ma_sv=sv.ma_sv) }}">
+                                        <i class="fa-solid fa-pen"></i> Sửa
+                                    </a>
+
+                                    <form method="POST"
+                                          action="{{ url_for('xoa_sinh_vien', ma_sv=sv.ma_sv) }}"
+                                          onsubmit="return confirm('Bạn có chắc muốn xóa sinh viên này?')">
+
+                                        <button type="submit" class="btn-delete">
+                                            <i class="fa-solid fa-trash"></i> Xóa
+                                        </button>
+
+                                    </form>
+
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4" class="empty-data">
+                                    Chưa có sinh viên nào.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- 3. PHÂN CÔNG LAO ĐỘNG -->
+        <!-- ============================= -->
+
+        {% elif tab == 'phancong' %}
+
+        <section>
+
+            <div class="page-heading">
+                <div>
+                    <h3><i class="fa-solid fa-calendar-check"></i> Phân công lao động</h3>
+                    <p>Giao công việc cho sinh viên trong lớp</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+
+                <h4><i class="fa-solid fa-people-arrows"></i> Giao công việc cho sinh viên</h4>
+
+                <form method="POST" class="data-form">
+
+                    <input type="hidden" name="hanh_dong" value="phan_cong">
+
+                    <div class="form-group">
+                        <label>Chọn công việc</label>
+
+                        <select name="ma_cv" required>
+                            <option value="">-- Chọn công việc --</option>
+
+                            {% for cv in danh_sach_cv %}
+                            <option value="{{ cv.ma_cv }}">
+                                {{ cv.ma_cv }} - {{ cv.ten_cv }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Chọn sinh viên được phân công</label>
+
+                        <div class="student-list">
+
+                            {% for sv in danh_sach_sv %}
+                            <label class="student-item">
+                                <input type="checkbox" name="ma_sv"
+                                       value="{{ sv.ma_sv }}">
+
+                                <span>
+                                    {{ sv.ma_sv }} - {{ sv.ho_ten }}
+                                    ({{ sv.lop }})
+                                </span>
+                            </label>
+                            {% else %}
+                            <p>Chưa có sinh viên trong hệ thống.</p>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fa-solid fa-floppy-disk"></i> Lưu phân công
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <h4><i class="fa-solid fa-list-check"></i> Danh sách phân công lao động</h4>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã CV</th>
+                                <th>Tên công việc</th>
+                                <th>Ngày làm</th>
+                                <th>Sinh viên được giao</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for cv in danh_sach_phan_cong %}
+                            <tr>
+                                <td>{{ cv.ma_cv }}</td>
+                                <td>{{ cv.ten_cv }}</td>
+                                <td>{{ cv.ngay_lam }}</td>
+                                <td>{{ cv.sinh_vien or 'Chưa phân công' }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4" class="empty-data">
+                                    Chưa có công việc nào.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</div>
+
+</body>
+</html>
